@@ -31,6 +31,14 @@ async function run() {
             res.send(users)
         })
 
+        app.get('/users/:id', async (req, res) => {
+            const id = req.params.id
+            const query = { _id: ObjectId(id) }
+            const user = await usersCollection.findOne(query)
+            console.log(id)
+            res.send(user)
+        })
+
 
         // POST API
         app.post('/users', async (req, res) => {
